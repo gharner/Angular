@@ -15,7 +15,7 @@ export class PythonComponent {
   public pretty: string = '';
   public replit: boolean = false;
   public safeUrl!: SafeResourceUrl;
-  public title: string = 'Page Title';
+  public title: string = 'Loading';
   public pythonEndPoint: string = 'http://192.168.1.75:8080/';
   constructor(
     private sandboxService: SandboxService,

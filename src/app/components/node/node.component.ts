@@ -10,7 +10,7 @@ import { SandboxService } from 'src/app/services/sandbox.service';
 })
 export class NodeComponent {
   public pretty: string = '';
-  public title: string = 'Page Title';
+  public title: string = 'Loading';
   private readonly nodeEndPoint: string =
     'https://us-central1-mas-development-53ac7.cloudfunctions.net';
 
@@ -18,6 +18,7 @@ export class NodeComponent {
 
   async ngOnInit() {
     try {
+      this.title = 'Loading';
       await this.handleRoute(this.router.url);
     } catch (error) {
       console.error('Error during initialization:', error);
