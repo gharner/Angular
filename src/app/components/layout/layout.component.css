@@ -1,0 +1,15 @@
+::ng-deep .p-menubar {
+     background-color: goldenrod
+}
+
+::ng-deep .p-menubar .p-highlight>.p-menuitem-content {
+     background-color: rgb(243, 184, 35)
+}
+
+::ng-deep .p-menubar .p-menuitem-content:hover {
+     background-color: rgb(243, 184, 35)
+}
+
+::ng-deep .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus>.p-menuitem-content {
+     background-color: rgb(243, 184, 35)
+}

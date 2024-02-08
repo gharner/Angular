@@ -1,0 +1,15 @@
+<p-card>
+	<form [formGroup]="exampleForm" (ngSubmit)="onSubmit($event)">
+		<div class="p-grid">
+			<label for="exampleText1">Input Element</label><br />
+			<input class="p-grid-6" type="text" formControlName="exampleText1" placeholder="Enter some example text" pInputText />
+		</div>
+		<div formGroupName="nestedGroup">
+			<label for="exampleText2">Nested Input Element</label><br />
+			<input type="text" formControlName="exampleText2" placeholder="Enter some example text" pInputText />
+		</div>
+		<label for="Save">Writes to console on button click.</label><br />
+		<p-button label="Save" icon="pi pi-check" type="submit" [disabled]="!exampleForm.valid"></p-button>
+	</form>
+</p-card>
+<footer></footer>

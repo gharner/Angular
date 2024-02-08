@@ -1,0 +1,12 @@
+<h1 [innerHTML]="title">Title</h1>
+<p-card>
+	<img id="cover" src="/assets/binding.png" />
+	<input id="propertybinding" style="width: 500px" type="text" [value]="propertyBinding" disabled="true" />
+	<br />
+	<input id="interpolationbinding" style="width: 500px" type="text" value="{{ interpolationBinding }}" disabled="true" />
+	<br />
+	<input id="interpolationbinding" style="width: 500px" type="text" [value]="testValue()" disabled="true" />
+	<br />
+	<input id="innerhtml" style="width: 500px" type="text" value="[innerHTML]='title'" disabled="true" />
+</p-card>
+<footer></footer>

@@ -1,0 +1,3 @@
+:host ::ng-deep.p-datatable-table tr:nth-child(even) {
+	background-color: #faf5b3;
+}

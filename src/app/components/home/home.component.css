@@ -1,0 +1,107 @@
+#call-to-action {
+     margin-top: 1em;
+}
+
+#definition {
+     margin-top: 1em;
+     font-weight: bold;
+     font-size: large;
+}
+
+#dictionary {
+     font-weight: bolder;
+     font-size: 3vw;
+     color: white;
+     font-family: 'Teko';
+}
+
+#pronunciation {
+     font-style: italic;
+}
+
+
+* {
+     z-index: 1 !important;
+}
+
+.grid-center {
+     display: grid;
+     place-items: center;
+}
+
+
+.theme-color {
+     background-color: goldenrod;
+}
+
+h1 {
+     z-index: 1;
+}
+
+hr {
+     margin-top: 2em;
+     border: 1px solid white;
+}
+
+main {
+     margin-top: 1em;
+}
+
+section {
+     margin-top: .5em;
+     margin-left: 1px;
+}
+
+@media screen and (min-width: 1300px) {
+     ::ng-deep .p-card {
+          margin: 0 1em 1em 0;
+          width: 18vw;
+     }
+
+     .card-content {
+          height: 200px;
+     }
+
+     #cover {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+          object-position: top left;
+          padding: 0 5px 0 0;
+     }
+}
+
+@media screen and (max-width: 1300px) {
+     ::ng-deep .p-card {
+          margin: 0 1em 1em 0;
+          width: 25vw;
+     }
+
+     .card-content {
+          height: 200px;
+     }
+
+     #cover {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+          object-position: top left;
+          padding: 0 5px 0 0;
+     }
+
+}
+
+@media screen and (max-width: 600px) {
+     ::ng-deep .p-card {
+          margin: 0 1em 1em 1em;
+          width: 96vw;
+     }
+
+     .grid-center {
+          margin: 0 .5em 0 0;
+     }
+}
+
+img {
+     width: 100%;
+}

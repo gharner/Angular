@@ -1,0 +1,173 @@
+<div>
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h3>* It is essentially a type selector that matches any type.</h3>
+          </div>
+          <div class="col-4 text-right">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('asterisk-selector')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='asterisk-selector'">
+          <section>
+               <pre>
+* {{ '{' }}
+     font-family: 'Courier New', Courier, monospace
+{{ '}' }}
+               </pre>
+          </section>
+     </main>
+     <div *ngIf="path==='asterisk-selector'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<br />
+<div>
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h3>All elements with the title attribute containing the word "rose" have a red font.</h3>
+          </div>
+          <div class="col-4 text-right">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('attribute-selector')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='attribute-selector'">
+          <section>
+               <pre>
+[title~='rose'] {{ '{' }}
+     color: red !important
+{{ '}' }}
+               </pre>
+          </section>
+          <div title="rose">A rose by any other name would smell as sweet</div>
+     </main>
+     <div *ngIf="path==='attribute-selector'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<br />
+<div>
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h3>&gt; is a CSS child selector</h3>
+          </div>
+          <div class="col-4 text-right">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('child-selector')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='child-selector'">
+          <section>
+               <pre>
+p>span {{ '{' }}
+     color: blue !important;
+{{ '}' }}
+               </pre>
+          </section>
+          <div>
+               <p>Having one child makes you a parent; having two you are a <span>referee</span>.</p>
+          </div>
+     </main>
+     <div *ngIf="path==='child-selector'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<br />
+<div>
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h3>Double-colon selectors are <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements">pseudo-elements</a>.</h3>
+          </div>
+          <div class="col-4 text-right">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('pseudo-element-selector')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='pseudo-element-selector'">
+          <section>
+               <pre>
+#pseudo-element>p::first-line {{ '{' }}
+     text-transform: uppercase;
+{{ '}' }}
+               </pre>
+          </section>
+          <div id="pseudo-element-selector">
+               <p>This is the first line. <br> This is the second. </p>
+          </div>
+     </main>
+     <div *ngIf="path==='pseudo-element-selector'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<br />
+<div>
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h3>Single-colon selectors are <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a>.</h3>
+          </div>
+          <div class="col-4 text-right">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('pseudo-class-selector')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='pseudo-class-selector'">
+          <section>
+               <pre>
+#pseudo-class > p:hover {{ '{' }}
+     color: blue;
+{{ '}' }}
+               </pre>
+          </section>
+          <div id="pseudo-class">
+               <p>Hover over this line.</p>
+          </div>
+     </main>
+     <div *ngIf="path==='pseudo-class-selector'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<br />
+<div>
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h3>Using id #example :not id #top</h3>
+          </div>
+          <div class="col-4 text-right">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('not-selector')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='not-selector'">
+          <section>
+               <pre>
+#example > :not(.top) {{ '{' }}
+     font-weight: bolder; 
+     font-size: x-large;
+{{ '}' }}
+               </pre>
+          </section>
+          <div>
+               <section id="example">
+                    <p id="top">Top</p>
+                    <p id="botton">Bottom</p>
+               </section>
+          </div>
+     </main>
+     <div *ngIf="path==='not-selector'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<footer></footer>

@@ -1,0 +1,60 @@
+<section class="grid">
+	<div class="col grid-center theme-color">
+		<div class="col">
+			<hr>
+			<div id="dictionary"> wan·der·ing </div>
+			<div id="pronunciation"> /ˈwänd(ə)riNG/ </div>
+			<div id="part">adjective</div>
+			<div id="definition">traveling aimlessly from place to place</div>
+			<hr>
+			<div id="call-to-action"> Is your business wandering along the information superhighway, searching for a clear path to success? Allow me to be your guide. Let's embark on this
+				transformative journey and chart a course to your business's thriving future. </div>
+		</div>
+	</div>
+	<div *ngIf="showProfilePic" class="col grid-center" style="padding: 0;">
+		<img id="cover" src="/assets/profile.png" />
+	</div>
+</section>
+<main class="flex flex-wrap justify-content-center ">
+	<p-card header="Martial Art Solutions" subheader="A Fullstack Angular Project">
+		<ng-template pTemplate="header">
+			<img alt="Card" src="assets/angular.png" />
+		</ng-template>
+		<div class="card-content"> This project combines Angular JavaScript framework for a responsive frontend with Google Firebase for backend services. Angular's dynamic and scalable interface
+			pairs with Firebase's efficient hosting, secure authentication, and real-time NoSQL database. This blend delivers a robust, user-friendly web application experience. </div>
+		<ng-template pTemplate="footer">
+			<p-button label="YouTube" icon="pi pi-youtube" (click)="openUrl('https://youtu.be/B6XLE1r9XFs?si=WT90zp02Dn9_CazX')"></p-button>
+		</ng-template>
+	</p-card>
+	<!-- 	<p-card header="React" subheader="A React Project">
+		<ng-template pTemplate="header">
+			<img alt="Card" src="assets/react.png" />
+		</ng-template>
+		<div class="card-content"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum
+			nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas! </div>
+		<ng-template pTemplate="footer">
+			<p-button label="YouTube" icon="pi pi-youtube"></p-button>
+		</ng-template>
+	</p-card> -->
+	<p-card header="Python" subheader="A REST api">
+		<ng-template pTemplate="header">
+			<img alt="Card" src="assets/python.png" />
+		</ng-template>
+		<div class="card-content">I've built a sandbox RESTful API using Python, leveraging the Flask framework for efficient HTTP request handling. This sandbox environment allows for safe testing
+			and experimentation with features in a non-live setting. Designed to support CRUD operations, it offers a stateless, intuitive interface for seamless data manipulation.. </div>
+		<ng-template pTemplate="footer">
+			<p-button label="YouTube" icon="pi pi-youtube"></p-button>
+		</ng-template>
+	</p-card>
+	<p-card header="gregharner" subheader="npm install gregharner">
+		<ng-template pTemplate="header">
+			<img alt="Card" src="assets/npm.png" />
+		</ng-template>
+		<div class="card-content">I've created an NPM package containing a set of functions I regularly use in both Angular and React projects. This package enhances efficiency and consistency in my
+			frontend development, offering reusable utilities for common tasks. </div>
+		<ng-template pTemplate="footer">
+			<p-button label="YouTube" icon="pi pi-youtube"></p-button>
+		</ng-template>
+	</p-card>
+</main>
+<footer></footer>

@@ -1,0 +1,280 @@
+<div id="sortArray">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Sort Example</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('sortarray')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='sortarray'">
+          <section>
+               <pre>
+data=
+{{prettyProductNames}};
+
+data.sort((a, b) => a.localeCompare(b));          
+          </pre>
+          </section>
+          <div>
+               <p *ngFor="let name of productNames"> {{ name }} </p>
+          </div>
+     </main>
+     <div *ngIf="path==='sortarray'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<!--  -->
+<div id="newMap">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Creating a Map</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('createmap')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='createmap'">
+          <section>
+               <pre>
+productNamesMap = new Map();
+productNamesMap.set(1, this.productNames[1]); 
+productNamesMap.set(2, this.productNames[2]); 
+productNamesMap.set(3, this.productNames[3]);
+console.log(productNamesMap)
+
+{{prettyProductNamesMap}}
+
+productNamesMap.get(2)
+          </pre>
+          </section>
+          <div>{{ productNamesMap ? productNamesMap.get(2) : '' }}</div>
+     </main>
+     <div *ngIf="path==='createmap'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<!--  -->
+<div id="isArray">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Is Object an Array?</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('isanarray')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='isanarray'">
+          <section>
+               <pre>
+Array.isArray(productNamesMap);
+Array.isArray([...this.productNamesMap])
+Array.isArray(Array.from(productNamesMap));
+typeof productNamesMap[Symbol.iterator] === 'function';    
+          </pre>
+          </section>
+          <div>
+               <p>{{ isAnArray('isArray') }}</p>
+               <p>{{ isAnArray('spread') }}</p>
+               <p>{{ isAnArray('from') }}</p>
+               <p>{{ isAnArray('arrayLike') }}</p>
+          </div>
+     </main>
+     <div *ngIf="path==='isanarray'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<!--  -->
+<div id="newSet">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Convert a Mixed Set to an Array of Numbers</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('convertmixedset')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='convertmixedset'">
+          <section>
+               <pre>
+{{convertSetToArray}}
+          </pre>
+          </section>
+          <div>{{ convertSetToArray() }}</div>
+     </main>
+     <div *ngIf="path==='convertmixedset'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<!--  -->
+<div id="spreadArray">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>How to Copy an Array</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('howtocopyarray')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='howtocopyarray'">
+          <section>
+               <pre>
+const array = [1, 2, 3, {{ "{" }} value: 4 {{ "}" }}, [[5]], 6, 7];
+const spread = [...array];
+const slice = array.slice()
+const concat = array.concat([8, 9])
+const deep = JSON.parse(JSON.stringify(array))
+          </pre>
+          </section>
+          <div>
+               <p>{{copyArray('spread')}}</p>
+               <p>{{copyArray('slice')}}</p>
+               <p>{{copyArray('concat')}}</p>
+               <p>{{copyArray('stringify')}}</p>
+          </div>
+     </main>
+     <div *ngIf="path==='howtocopyarray'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div><!--  -->
+<div id="intersection">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Intersection</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('arrayintersection')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='arrayintersection'">
+          <section>
+               <pre>
+let array = [1, 2, 3, 4, 5, 6, 7];
+JSON.stringify(array.filter((f) => [1, 2].includes(f)));
+          </pre>
+          </section>
+          <div>{{ filterArrays('intersection') }}</div>
+     </main>
+     <div *ngIf="path==='arrayintersection'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<!--  -->
+<div id="difference">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Difference</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('arraydifference')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='arraydifference'">
+          <section>
+               <pre>
+let array = [1, 2, 3, 4, 5, 6, 7];
+JSON.stringify(array.filter((f) => ![1, 2].includes(f)));
+          </pre>
+          </section>
+          <div>{{ filterArrays('difference') }}</div>
+     </main>
+     <div *ngIf="path==='arraydifference'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<!--  -->
+<div id="groupBy">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Group by With Reducer</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('arrayreducer')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='arrayreducer'">
+          <section>
+               <pre>
+{{ totalValueOfInventory }}
+          </pre>
+          </section>
+          <div>{{ reduceTotal }} </div>
+     </main>
+     <div *ngIf="path==='arrayreducer'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<!--  -->
+<div id="filterduplicates">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Remove Duplicates Using Filter</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('filterduplicates')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='filterduplicates'">
+          <section>
+               <pre>
+{{removeDuplicatesByFilter}}          
+          </pre>
+          </section>
+          <div>{{ filterDuplicates }}</div>
+     </main>
+     <div *ngIf="path==='filterduplicates'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<div id="setduplicates">
+     <div class="grid" style="margin: 0;">
+          <div class="col-8" style="margin: 0;">
+               <h1>Remove Duplicates Using Set</h1>
+          </div>
+          <div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+               <span class="stackblitz-icon">Show in Stackblitz</span>
+               <img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('setduplicates')" pTooltip="Show in Stackblitz">
+          </div>
+     </div>
+     <main *ngIf="!path || path!='setduplicates'">
+          <section>
+               <pre>
+{{removeDuplicatesBySet}}          
+          </pre>
+          </section>
+          <div>{{ setDuplicates }}</div>
+     </main>
+     <div *ngIf="path==='setduplicates'">
+          <p-card>
+               <iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </p-card>
+     </div>
+</div>
+<footer></footer>

@@ -1,0 +1,52 @@
+<h1>Directives</h1>
+<h3>Attribute Directive used to alternate row colors, a Pipe Directive shortens category, and a Structural Directive hides delivered orders in the expansion rows. </h3>
+<p-table [value]="products" dataKey="id" styleClass="p-datatable-gridlines p-datatable-striped" responsiveLayout="stack">
+	<ng-template pTemplate="header">
+		<tr>
+			<th style="width: 3rem"></th>
+			<th pSortableColumn="name">Category<p-sortIcon field="category"></p-sortIcon>
+			</th>
+			<th>Name</th>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-product let-expanded="expanded">
+		<tr [AttributeDirective]="'lightyellow'">
+			<td>
+				<button type="button" pButton pRipple [pRowToggler]="product" class="p-button-text p-button-rounded p-button-plain"
+					[icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+			</td>
+			<td>{{ product.category | shorten }}</td>
+			<td>{{ product.name }}</td>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="rowexpansion" let-product>
+		<tr>
+			<td colspan="7">
+				<div class="p-3">
+					<p-table [value]="product.orders" dataKey="contactGroupId" styleClass="p-datatable-gridlines p-datatable-striped" responsiveLayout="stack">
+						<ng-template pTemplate="header">
+		<tr>
+			<th pSortableColumn="id">Customer<p-sortIcon field="customer"></p-sortIcon></th>
+			<th pSortableColumn="id">Status<p-sortIcon field="status"></p-sortIcon></th>
+			<th pSortableColumn="id">Amount<p-sortIcon field="amount"></p-sortIcon></th>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-orders>
+		<tr *StructuralDirective="orders.status!=='DELIVERED'">
+			<td>{{ orders.customer }}</td>
+			<td>{{ orders.status }}</td>
+			<td>{{ orders.amount }}</td>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="emptymessage">
+		<tr>
+			<td colspan="2">There are no order for this product yet.</td>
+		</tr>
+	</ng-template>
+</p-table>
+</div>
+</td>
+</tr>
+</ng-template>
+</p-table>
+<footer></footer>

@@ -1,0 +1,8 @@
+<div style="background-color: goldenrod;">
+	<p-menubar [model]="items">
+		<div>
+			<button *ngIf="showPrivateMenu" type="button" pButton label="Sign Out" icon="pi pi-power-off" style="margin-left: 0.25em" (click)="onSignOutClick()"></button>
+			<button *ngIf="!showPrivateMenu" type="button" pButton label="Sign In" icon="pi pi-sign-in" style="margin-left: 0.25em" (click)="onSignInClick()"></button>
+		</div>
+	</p-menubar>
+</div>

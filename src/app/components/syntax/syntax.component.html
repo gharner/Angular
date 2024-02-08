@@ -1,0 +1,206 @@
+<!-- break -->
+<div id="break">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Break and Continue</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('breakandcontinue')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='breakandcontinue'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{breakAndContinue}} </div>
+		</section>
+		<div>
+			<p>Break: {{breakAndContinue().break}} </p>
+			<p>Continue: {{breakAndContinue().continue}}</p>
+		</div>
+	</main>
+	<div *ngIf="path==='breakandcontinue'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<!-- bang -->
+<div id="bang">
+	<h1>Bang and Double Bang</h1>
+	<main>
+		<section>
+			<pre>
+undefined;
+!undefined;
+!!undefined;
+			</pre>
+		</section>
+		<div>
+			<p>undefined: {{undefined}} </p>
+			<p>!undefinded: {{!undefined}}</p>
+			<p>!!undefined {{!!undefined}}</p>
+		</div>
+	</main>
+</div>
+<!-- curryClassic -->
+<div id="curryClassic">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Classic Curry Function</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('curryclassic')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='curryclassic'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{curryAddClassic}} </div>
+		</section>
+		<div>{{curryAddClassic()}}</div>
+	</main>
+	<div *ngIf="path==='curryclassic'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<!-- curryArrow -->
+<div id="curryArrow">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Arrow Curry Function</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('arrowcurry')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='arrowcurry'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{curryAddArrow}} </div>
+		</section>
+		<div>{{curryAddArrow()}}</div>
+	</main>
+	<div *ngIf="path==='arrowcurry'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<!-- functionAsParameter -->
+<div id="functionAsParameter">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Passing a Function as Parameter</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('functionparameter')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='functionparameter'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{functionAsParameter}} </div>
+		</section>
+		<div>{{functionAsParameter()}}</div>
+	</main>
+	<div *ngIf="path==='functionparameter'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<!-- setPropertyFromVariable -->
+<div id="setPropertyFromVariable">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Set Property Using a Variable</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('variableproperty')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='variableproperty'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{myDog}} </div>
+		</section>
+		<div>{{myDog()}}</div>
+	</main>
+	<div *ngIf="path==='variableproperty'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<!-- recursive -->
+<div id="recursive">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Recursive Function</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('recursiveexample')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='recursiveexample'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{recursive}} </div>
+		</section>
+		<div>{{recursive(5)}}</div>
+	</main>
+	<div *ngIf="path==='recursiveexample'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<!-- destructuring -->
+<div id="destructuring ">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Destructuring an Object</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('destructuringobject')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='destructuringobject'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{destructuring}} </div>
+		</section>
+		<div>{{destructuring()}}</div>
+	</main>
+	<div *ngIf="path==='destructuringobject'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<!-- conditional -->
+<div id="conditional ">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h1>Shorthand for Conditional Execution</h1>
+		</div>
+		<div class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+			<span class="stackblitz-icon">Show in Stackblitz</span>
+			<img src="assets/stackblitz.svg" alt="stackblitz" class="stackblitz" (click)="stackblitz('conditionalshorthand')" pTooltip="Show in Stackblitz">
+		</div>
+	</div>
+	<main *ngIf="!path || path!='conditionalshorthand'">
+		<section>
+			<div style="white-space: pre-wrap;"> {{conditionalShorthand}} </div>
+		</section>
+		<div>{{conditionalShorthand()}}</div>
+	</main>
+	<div *ngIf="path==='conditionalshorthand'">
+		<p-card>
+			<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+		</p-card>
+	</div>
+</div>
+<footer></footer>

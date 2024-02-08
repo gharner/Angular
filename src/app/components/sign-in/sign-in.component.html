@@ -1,0 +1,14 @@
+<h3>Sign In</h3>
+<div>
+	<input pInputText type="text" placeholder="Username" #userName required />
+</div>
+<div>
+	<input pInputText type="password" placeholder="Password" #userPassword required />
+</div>
+<div>
+	<p-button label="Sign In" (click)="onContinueWithEmailClick(userName.value, userPassword.value)"></p-button>
+</div>
+<div>Or</div>
+<div>
+	<p-button label="Sign In with Google" (click)="onContinueWithGoogleClick()"></p-button>
+</div>

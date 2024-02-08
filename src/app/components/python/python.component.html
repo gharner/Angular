@@ -1,0 +1,20 @@
+<div class="grid" style="margin: 0;">
+	<div class="col-8" style="margin: 0;">
+		<h1>{{title}}</h1>
+	</div>
+	<div *ngIf="hasReplit" class="col-4 text-right" style="margin: 0; padding-top: 2.5em;">
+		<span class="replit-icon">Show in Replit</span>
+		<img src="assets/replit.svg" alt="replit" class="replit" (click)="handleClick()" pTooltip="Show in Replit">
+	</div>
+</div>
+<main *ngIf="!replit">
+	<pre>
+			<div>{{ pretty }}</div>
+		</pre>
+</main>
+<div *ngIf="replit">
+	<p-card>
+		<iframe [src]="safeUrl" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+	</p-card>
+</div>
+<footer></footer>

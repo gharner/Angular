@@ -1,0 +1,21 @@
+<p-card>
+	<img id="cover" src="/assets/lifecycle.png" />
+</p-card>
+<div style="margin-bottom: 1em; margin-top: 1em;">
+	<p-button (click)="updateUser()">Update</p-button>
+</div>
+<div>
+	<p-button (click)="destroy()">Destroy Child</p-button>
+	<div *ngIf="isChildDestroyed">Child component is destroyed!</div>
+</div>
+<h1>ngAfterContentInit</h1>
+<p>This method is called only once during the component’s lifecycle, after the first ngDoCheck. Within this hook, we have access to the ElementRef of the ContentChild for the first time after the
+	component’s creation, after Angular has already projected the external content into the component’s view.</p>
+<p>We projected content from the Parent component to the Child component. At this point, we only have access to the projected content (contentWrapper has the value of the projected content). Moreover,
+	the component’s template is not initialized yet (the wrapper is undefined). It will be initialized and ready to be accessed on the ngAfterViewInit hook.</p>
+<p>this.wrapper is the child html element: {{wrapper ? wrapper : 'undefined'}}</p>
+<p>this.content is the parent projected content: {{content ? content : 'undefined'}}</p>
+<app-child *ngIf="!isChildDestroyed" [userName]="userName">
+	<div #contentWrapper style="color: red;">This content is projected from parent to child.</div>
+</app-child>
+<footer></footer>

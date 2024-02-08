@@ -1,0 +1,12 @@
+img {
+     max-height: 75vh;
+}
+
+h1 {
+     margin: auto;
+}
+
+::ng-deep .p-card .p-card-body {
+     padding: 0;
+     text-align: center;
+}

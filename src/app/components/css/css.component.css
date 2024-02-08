@@ -1,0 +1,71 @@
+main {
+     background: gray;
+     color: white;
+     padding: 1rem 0 1rem 0;
+     border: 3px !important;
+     border-color: black !important;
+}
+
+main>div {
+     border: 2px solid black;
+     background-color: white;
+     color: black;
+     margin-left: 1em;
+     padding: 2rem 0rem 2rem 1rem;
+     width: 92%;
+}
+
+section {
+     margin: 0.5em;
+}
+
+* {
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+[title~='rose'] {
+     color: red !important;
+}
+
+p>span {
+     color: blue !important;
+}
+
+#pseudo-element>p::first-line {
+     text-transform: uppercase;
+}
+
+#pseudo-class>p:hover {
+     color: blue;
+}
+
+#example> :not(#top) {
+     font-weight: bolder;
+     font-size: x-large;
+}
+
+footer {
+     margin-top: 1em;
+}
+
+.stackblitz {
+     max-width: 24px;
+     cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+     .stackblitz-icon {
+          padding-right: 5px;
+     }
+}
+
+@media screen and (max-width: 600px) {
+     .stackblitz-icon {
+          padding-right: 0;
+
+     }
+}
+
+h3 {
+     margin: 0;
+}

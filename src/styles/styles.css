@@ -1,0 +1,48 @@
+@import '~primeng/resources/primeng.min.css';
+@import '~primeng/resources/themes/saga-orange/theme.css';
+@import '~primeicons/primeicons.css';
+@import '~primeflex/primeflex.css';
+
+* {
+     box-sizing: border-box;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.hidden {
+     display: none;
+}
+
+.menubar {
+     font-size: 1.25em;
+}
+
+@media screen and (max-width: 1300px) {
+     body {
+          margin-left: .5em;
+          margin-right: .5em;
+     }
+}
+
+@media screen and (min-width: 1300px) {
+     body {
+          margin-left: 20%;
+          margin-right: 20%;
+     }
+}
+
+a {
+     cursor: pointer;
+}
+
+body,
+html {
+     height: 100%;
+}
+
+footer {
+     padding-bottom: 1vh;
+}
+
+img {
+     width: 90%;
+}

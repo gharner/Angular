@@ -1,0 +1,16 @@
+<div #wrapper>
+     <ng-content></ng-content>
+</div>
+<div>
+     <h1>ngOnChanges</h1>
+     <p>This section uses ngOnChanges from the child component and will be destoryed when the child is destroyed.</p>
+     <p>This method is called once on a component's creation and then every time changes are detected in one of the component’s input properties. It receives a SimpleChanges object as a parameter,
+          which contains information regarding which of the input properties has changed - in case we have more than one - and its current and previous values.</p>
+     <p>Note that if your component has no inputs or you use it without providing any inputs, the framework will not call ngOnChanges().</p>
+     <p>This is one of the lifecycle hooks which can come in handy in multiple use cases. It is very useful if you need to handle any specific logic in the component based on the received input
+          property.</p>
+     <p>Notice that, the received changes object has three keys currentValue, previousValue, and firstChange, they work as they sound.</p>
+     <p>We could say that we want to change the userName value if it’s not the first change, or if the current value is only Chris. Select the update button emit a new &#64;input() with value Chris.
+          Click a second time to change the name to John.</p>
+     <div style="color: red;"> Here is the user name &#64;input() from parent: {{ userName }}. </div>
+</div>
