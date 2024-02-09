@@ -23,11 +23,6 @@ main>div {
      width: 92%;
 }
 
-.replit {
-     max-width: 24px;
-     cursor: pointer;
-}
-
 footer {
      padding-bottom: 1vh;
 }
@@ -67,4 +62,9 @@ h1[id="Loading"] {
      to {
           opacity: 1.0;
      }
+}
+
+.replit {
+     max-width: 24px;
+     cursor: pointer;
 }
