@@ -17,8 +17,6 @@ export class SyntaxComponent {
     this.functionString = this.breakAndContinue.toString();
   }
 
-  async ngOnInit() {}
-
   breakAndContinue() {
     let breakAndContinue: { break: number[]; continue: number[] } = {
       break: [],
