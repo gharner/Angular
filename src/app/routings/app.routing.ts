@@ -64,6 +64,8 @@ export const routes: Routes = [
   { path: 'api', component: PythonComponent, canActivate: [AuthGuard] },
   { path: 'station', component: PythonComponent, canActivate: [AuthGuard] },
   { path: 'cities', component: PythonComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: PythonComponent, canActivate: [AuthGuard] },
+  { path: 'products', component: PythonComponent, canActivate: [AuthGuard] },
 
   // Node API Routes
   //TODO: change this to use a route param

@@ -57,6 +57,18 @@ export class PythonComponent {
         this.title = 'API Cities from Firestore NoSQL Database';
         break;
 
+      case '/users':
+        this.hasReplit = false;
+        this.pretty = CustomFunctions.stringyPretty(result);
+        this.title = 'API Users from users.json file';
+        break;
+
+      case '/products':
+        this.hasReplit = false;
+        this.pretty = CustomFunctions.stringyPretty(result);
+        this.title = 'API products from products.json file';
+        break;
+
       case '/station':
         this.hasReplit = true;
         this.pretty = CustomFunctions.stringyPretty(result);

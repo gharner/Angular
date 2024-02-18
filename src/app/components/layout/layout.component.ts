@@ -156,6 +156,20 @@ export class LayoutComponent implements OnInit, OnChanges {
                   this.onMenuClick('/cities');
                 },
               },
+              {
+                label: 'users',
+                id: 'users',
+                command: () => {
+                  this.onMenuClick('/users');
+                },
+              },
+              {
+                label: 'products',
+                id: 'products',
+                command: () => {
+                  this.onMenuClick('/products');
+                },
+              },
             ],
           },
         ],
