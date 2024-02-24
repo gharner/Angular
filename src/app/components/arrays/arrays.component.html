@@ -137,6 +137,7 @@ const spread = [...array];
 const slice = array.slice()
 const concat = array.concat([8, 9])
 const deep = JSON.parse(JSON.stringify(array))
+const clone = structuredClone(array);
           </pre>
           </section>
           <div>
@@ -144,6 +145,7 @@ const deep = JSON.parse(JSON.stringify(array))
                <p>{{copyArray('slice')}}</p>
                <p>{{copyArray('concat')}}</p>
                <p>{{copyArray('stringify')}}</p>
+               <p>{{copyArray('structured')}}</p>
           </div>
      </main>
      <div *ngIf="path==='howtocopyarray'">

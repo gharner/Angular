@@ -78,6 +78,9 @@ export class ArraysComponent {
         return JSON.parse(JSON.stringify(array));
       case 'concat':
         return array.concat([8, 9]);
+      case 'structured':
+        const clone = structuredClone(array);
+        return clone;
       default:
         return confirm('Error in copyArray()');
     }
