@@ -23,4 +23,18 @@ export class CSSComponent {
     let stackblitzUrl = `https://stackblitz.com/edit/${this.path}?file=index.ts`;
     this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(stackblitzUrl);
   }
+
+  calculatedStyle(valueCheck: boolean) {
+    let style: string = '';
+    switch (valueCheck) {
+      case true:
+        style = 'background-color: #FCFFD2';
+        break;
+
+      case false:
+        style = 'background-color: lightgrey';
+        break;
+    }
+    return style;
+  }
 }
