@@ -140,4 +140,9 @@ export class SyntaxComponent {
       return 'The condition is true';
     }
   }
+
+  castingShorthand() {
+    const numberString = '123';
+    return +numberString;
+  }
 }
