@@ -50,6 +50,8 @@ import { ReactComponent } from '../components/react/react.component';
 import { MeComponent } from '../components/me/me.component';
 import { NodeComponent } from '../components/node/node.component';
 
+const isLocalhost = window.location.hostname === 'localhost';
+
 @NgModule({
   imports: [
     AppRoutingModule,
@@ -61,7 +63,7 @@ import { NodeComponent } from '../components/node/node.component';
     ReactiveFormsModule,
     provideAuth(() => {
       const auth = getAuth();
-      if (sandboxFirebase.useEmulators) {
+      if (isLocalhost) {
         connectAuthEmulator(auth, 'http://localhost:9099', {
           disableWarnings: true,
         });
@@ -69,14 +71,15 @@ import { NodeComponent } from '../components/node/node.component';
       return auth;
     }),
     provideFirebaseApp(() => {
-      if (sandboxFirebase.useEmulators) {
+      if (isLocalhost) {
         return initializeApp(sandboxFirebase.emulatorCfg);
+      } else {
+        return initializeApp(sandboxFirebase.gregharner);
       }
-      return initializeApp(sandboxFirebase.gregharner);
     }),
     provideFirestore(() => {
       let firestore: Firestore;
-      if (sandboxFirebase.useEmulators) {
+      if (isLocalhost) {
         firestore = initializeFirestore(getApp(), {
           experimentalForceLongPolling: true,
         });
