@@ -117,13 +117,6 @@ export class LayoutComponent implements OnInit, OnChanges {
             label: 'Node.js',
             items: [
               {
-                label: 'api',
-                id: 'api',
-                command: () => {
-                  this.onMenuClick('/sandbox');
-                },
-              },
-              {
                 label: 'station',
                 id: 'station',
                 command: () => {
