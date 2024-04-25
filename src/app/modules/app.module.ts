@@ -49,6 +49,7 @@ import { PythonComponent } from '../components/python/python.component';
 import { ReactComponent } from '../components/react/react.component';
 import { MeComponent } from '../components/me/me.component';
 import { NodeComponent } from '../components/node/node.component';
+import { gapiSettings } from '../../environments/gapisettings';
 
 const isLocalhost = window.location.hostname === 'localhost';
 
@@ -123,14 +124,11 @@ const isLocalhost = window.location.hostname === 'localhost';
     ViewchildExample,
   ],
   providers: [
-    GoogleIdentityService,
+    { provide: API_KEY, useValue: gapiSettings.Sheets },
     AuthGuard,
-    IdentityResolverService,
-    {
-      provide: API_KEY,
-      useValue: 'AIzaSyCntgp0ELEZ8Uca1ypqpopo6yNRF9tQg20',
-    },
+    GoogleIdentityService,
     GoogleSheetsDbService,
+    IdentityResolverService,
   ],
   bootstrap: [AppComponent],
 })
