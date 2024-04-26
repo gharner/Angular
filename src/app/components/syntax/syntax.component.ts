@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { GregHarner } from 'gregharner';
+import { CustomFunctions } from 'src/app/models/global.model';
+import { CustomError } from '../../models/global.model';
 
 @Component({
   selector: 'app-syntax',
   templateUrl: './syntax.component.html',
   styleUrls: ['./syntax.component.css'],
 })
-export class SyntaxComponent {
+export class SyntaxComponent implements OnInit {
   public path: string = '';
   public safeUrl!: SafeResourceUrl;
   public value: any;
@@ -15,6 +16,10 @@ export class SyntaxComponent {
 
   constructor(private sanitizer: DomSanitizer) {
     this.functionString = this.breakAndContinue.toString();
+  }
+
+  ngOnInit(): void {
+    this.parseThis();
   }
 
   breakAndContinue() {
@@ -144,5 +149,44 @@ export class SyntaxComponent {
   castingShorthand() {
     const numberString = '123';
     return +numberString;
+  }
+
+  parseThis() {
+    const thisValues = CustomFunctions.extractUniqueValues(this, ['host']);
+
+    try {
+      // Directly throw a CustomError
+      throw new Error(`Extracted Values: ${JSON.stringify(thisValues)}`);
+    } catch (error: unknown) {
+      // 'error' is of type 'unknown'
+      // Ensure that error is an instance of Error
+      if (error instanceof Error) {
+        let customError: CustomError;
+
+        if (error instanceof CustomError) {
+          // If error is already CustomError, use it directly
+          customError = error;
+        } else {
+          // Otherwise, wrap it in a CustomError
+          customError = new CustomError(error.message);
+          customError.customData = { info: 'Converted from non-CustomError' };
+        }
+
+        // Log the error with custom data if available
+        console.error(
+          'Error in component:',
+          customError.message,
+          customError.customData
+        );
+        console.log('User Agent:', navigator.userAgent);
+
+        // Rethrow the error to be handled by the global error handler
+        throw customError;
+      } else {
+        // If it's not an Error instance, handle or log it appropriately
+        console.error('Caught an unexpected type of throw:', error);
+        throw new CustomError('Unknown error type', { error });
+      }
+    }
   }
 }

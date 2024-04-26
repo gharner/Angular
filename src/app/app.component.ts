@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { GoogleIdentityService } from './services/identity.service';
 import { SandboxService } from './services/sandbox.service';
 
@@ -8,7 +7,6 @@ import { SandboxService } from './services/sandbox.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MessageService],
 })
 export class AppComponent implements OnInit {
   public showPrivateMenu: boolean = true;
@@ -18,7 +16,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public messageService: MessageService,
     public identityService: GoogleIdentityService,
     private sandboxService: SandboxService
   ) {}

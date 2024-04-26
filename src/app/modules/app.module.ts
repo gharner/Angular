@@ -1,5 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
 import {
@@ -9,6 +9,12 @@ import {
   initializeFirestore,
   provideFirestore,
 } from '@angular/fire/firestore';
+import {
+  Functions,
+  connectFunctionsEmulator,
+  getFunctions,
+  provideFunctions,
+} from '@angular/fire/functions';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +22,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { API_KEY, GoogleSheetsDbService } from 'ng-google-sheets-db';
 import { sandboxFirebase } from 'src/environments/environment.sandbox';
+import { gapiSettings } from '../../environments/gapisettings';
 import { AppComponent } from '../app.component';
 import { ArraysComponent } from '../components/arrays/arrays.component';
 import { BatchingComponent } from '../components/batching/batching.component';
@@ -30,8 +37,12 @@ import { HomeComponent } from '../components/home/home.component';
 import { LayoutComponent } from '../components/layout/layout.component';
 import { ChildComponent } from '../components/lifecycles/child/child.component';
 import { ParentComponent } from '../components/lifecycles/parent.component';
+import { MeComponent } from '../components/me/me.component';
+import { NodeComponent } from '../components/node/node.component';
 import { PrimeChartsComponent } from '../components/prime-charts/prime-charts.component';
 import { PromiseExample } from '../components/promise-example/promise-example.component';
+import { PythonComponent } from '../components/python/python.component';
+import { ReactComponent } from '../components/react/react.component';
 import { ReactiveFormComponent } from '../components/reactive-form/reactive-form.component';
 import { RxJsDemo } from '../components/rxjs-demo/rxjs-demo.component';
 import { SignInComponent } from '../components/sign-in/sign-in.component';
@@ -45,11 +56,9 @@ import { IdentityResolverService } from '../resolvers/identity.resolver';
 import { AppRoutingModule } from '../routings/app.routing';
 import { GoogleIdentityService } from '../services/identity.service';
 import { NGPrimeModule } from './ngprime.module';
-import { PythonComponent } from '../components/python/python.component';
-import { ReactComponent } from '../components/react/react.component';
-import { MeComponent } from '../components/me/me.component';
-import { NodeComponent } from '../components/node/node.component';
-import { gapiSettings } from '../../environments/gapisettings';
+import { GlobalErrorHandler } from '../services/error-handler.service';
+import { ErrorInterceptor } from '../services/http-interceptor.service';
+import { MessageService } from 'primeng/api';
 
 const isLocalhost = window.location.hostname === 'localhost';
 
@@ -62,6 +71,7 @@ const isLocalhost = window.location.hostname === 'localhost';
     HttpClientModule,
     NGPrimeModule,
     ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(sandboxFirebase.gregharner)),
     provideAuth(() => {
       const auth = getAuth();
       if (isLocalhost) {
@@ -70,13 +80,6 @@ const isLocalhost = window.location.hostname === 'localhost';
         });
       }
       return auth;
-    }),
-    provideFirebaseApp(() => {
-      if (isLocalhost) {
-        return initializeApp(sandboxFirebase.emulatorCfg);
-      } else {
-        return initializeApp(sandboxFirebase.gregharner);
-      }
     }),
     provideFirestore(() => {
       let firestore: Firestore;
@@ -89,6 +92,16 @@ const isLocalhost = window.location.hostname === 'localhost';
         firestore = getFirestore();
       }
       return firestore;
+    }),
+    provideFunctions(() => {
+      let functions: Functions;
+      if (isLocalhost) {
+        functions = getFunctions();
+        connectFunctionsEmulator(functions, 'localhost', 5001);
+      } else {
+        functions = getFunctions();
+      }
+      return functions;
     }),
     provideMessaging(() => getMessaging()),
     provideStorage(() => getStorage()),
@@ -129,6 +142,9 @@ const isLocalhost = window.location.hostname === 'localhost';
     GoogleIdentityService,
     GoogleSheetsDbService,
     IdentityResolverService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })
