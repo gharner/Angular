@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GoogleIdentityService } from 'src/app/services/identity.service';
-import { MessageService } from 'primeng/api';
+import { CustomFunctions, throwCustomError } from 'src/app/models/global.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,8 +11,7 @@ import { MessageService } from 'primeng/api';
 export class SignInComponent implements OnInit {
   constructor(
     public identityService: GoogleIdentityService,
-    public router: Router,
-    private messageService: MessageService
+    public router: Router
   ) {}
 
   ngOnInit() {}
@@ -22,7 +21,14 @@ export class SignInComponent implements OnInit {
       await this.identityService.signInPopup();
       this.router.navigate(['home']);
     } catch (error) {
-      this.handleError(error, 'onContinueWithGoogleClick');
+      const arrayFromObject = CustomFunctions.extractUniqueValues(this, [
+        'email',
+        'projectId',
+        'host',
+        'href',
+      ]);
+      arrayFromObject.push({ function: 'accounts-forms=>submit' });
+      throwCustomError(error, arrayFromObject);
     }
   }
 
@@ -31,17 +37,14 @@ export class SignInComponent implements OnInit {
       await this.identityService.signInWithEmail(user, password);
       this.router.navigate(['home']);
     } catch (error) {
-      this.handleError(error, 'onContinueWithEmailClick');
+      const arrayFromObject = CustomFunctions.extractUniqueValues(this, [
+        'email',
+        'projectId',
+        'host',
+        'href',
+      ]);
+      arrayFromObject.push({ function: 'accounts-forms=>submit' });
+      throwCustomError(error, arrayFromObject);
     }
-  }
-
-  private handleError(error: any, context: string) {
-    console.error(error);
-    this.messageService.add({
-      severity: 'error',
-      summary: `Something went wrong in ${context}!`,
-      detail: error,
-      sticky: true,
-    });
   }
 }
