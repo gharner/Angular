@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { API_KEY, GoogleSheetsDbService } from 'ng-google-sheets-db';
+import { MessageService } from 'primeng/api';
 import { sandboxFirebase } from 'src/environments/environment.sandbox';
 import { gapiSettings } from '../../environments/gapisettings';
 import { AppComponent } from '../app.component';
@@ -54,11 +55,10 @@ import { AuthGuard } from '../guards/auth.guard';
 import { ShortenPipe } from '../pipes/shorten.pipe';
 import { IdentityResolverService } from '../resolvers/identity.resolver';
 import { AppRoutingModule } from '../routings/app.routing';
-import { GoogleIdentityService } from '../services/identity.service';
-import { NGPrimeModule } from './ngprime.module';
 import { GlobalErrorHandler } from '../services/error-handler.service';
 import { ErrorInterceptor } from '../services/http-interceptor.service';
-import { MessageService } from 'primeng/api';
+import { GoogleIdentityService } from '../services/identity.service';
+import { NGPrimeModule } from './ngprime.module';
 
 const isLocalhost = window.location.hostname === 'localhost';
 
