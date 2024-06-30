@@ -59,6 +59,7 @@ import { GlobalErrorHandler } from '../services/error-handler.service';
 import { ErrorInterceptor } from '../services/http-interceptor.service';
 import { GoogleIdentityService } from '../services/identity.service';
 import { NGPrimeModule } from './ngprime.module';
+import { oopComponent } from '../components/oop/oop.component';
 
 const isLocalhost = window.location.hostname === 'localhost';
 
@@ -112,22 +113,23 @@ const isLocalhost = window.location.hostname === 'localhost';
     AttributeDirective,
     BatchingComponent,
     BindingComponent,
-    CSSComponent,
     ChildComponent,
     ContentComponent,
     ContentProjectionComponent,
+    CSSComponent,
     DirectivesTableComponent,
     GoogleComponent,
     HomeComponent,
     LayoutComponent,
     MeComponent,
     NodeComponent,
+    oopComponent,
     ParentComponent,
     PrimeChartsComponent,
     PromiseExample,
     PythonComponent,
-    ReactiveFormComponent,
     ReactComponent,
+    ReactiveFormComponent,
     RxJsDemo,
     ShortenPipe,
     SignInComponent,

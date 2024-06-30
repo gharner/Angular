@@ -93,6 +93,13 @@ export class LayoutComponent implements OnInit, OnChanges {
                 },
               },
               {
+                label: 'OOP',
+                id: 'oop',
+                command: () => {
+                  this.onMenuClick('/oop');
+                },
+              },
+              {
                 label: 'Promise',
                 id: 'promiseX',
                 command: () => {

@@ -23,6 +23,7 @@ import { PythonComponent } from '../components/python/python.component';
 import { ReactComponent } from '../components/react/react.component';
 import { MeComponent } from '../components/me/me.component';
 import { NodeComponent } from '../components/node/node.component';
+import { oopComponent } from '../components/oop/oop.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -55,6 +56,7 @@ export const routes: Routes = [
   { path: 'react', component: ReactComponent, canActivate: [AuthGuard] },
   { path: 'rxjsDemo', component: RxJsDemo, canActivate: [AuthGuard] },
   { path: 'sheets', component: SheetsComponent, canActivate: [AuthGuard] },
+  { path: 'oop', component: oopComponent, canActivate: [AuthGuard] },
   { path: 'sign-in', component: SignInComponent },
   { path: 'syntax', component: SyntaxComponent, canActivate: [AuthGuard] },
   { path: 'twilio', component: TwilioComponent, canActivate: [AuthGuard] },
