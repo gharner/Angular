@@ -217,4 +217,17 @@ undefined;
 		<div>{{castingShorthand()}}</div>
 	</main>
 </div>
+<!-- cast shorthand -->
+<div id="shorthand ">
+	<div class="grid" style="margin: 0;">
+		<div class="col-8" style="margin: 0;">
+			<h3>Ledger JSON</h3>
+
+		</div>
+	</div>
+	<main>
+		<textarea #jsonOutput rows="10" cols="50" [value]="getJsonData()" readonly></textarea>
+		<button (click)="copyToClipboard(jsonOutput)">Copy JSON</button>
+	</main>
+</div>
 <footer></footer>
