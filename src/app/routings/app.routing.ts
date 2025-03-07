@@ -11,7 +11,7 @@ import { PrimeChartsComponent } from '../components/prime-charts/prime-charts.co
 import { DirectivesTableComponent } from '../components/directives/directives.component';
 import { PromiseExample } from '../components/promise-example/promise-example.component';
 import { ReactiveFormComponent } from '../components/reactive-form/reactive-form.component';
-import { RxJsDemo } from '../components/rxjs-demo/rxjs-demo.component';
+import { RxJsDemo } from '../components/experiments/experiments.component';
 import { SignInComponent } from '../components/sign-in/sign-in.component';
 import { HomeComponent } from '../components/home/home.component';
 import { SyntaxComponent } from '../components/syntax/syntax.component';

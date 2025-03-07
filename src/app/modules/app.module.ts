@@ -45,7 +45,7 @@ import { PromiseExample } from '../components/promise-example/promise-example.co
 import { PythonComponent } from '../components/python/python.component';
 import { ReactComponent } from '../components/react/react.component';
 import { ReactiveFormComponent } from '../components/reactive-form/reactive-form.component';
-import { RxJsDemo } from '../components/rxjs-demo/rxjs-demo.component';
+import { Experiments } from '../components/experiments/experiments.component';
 import { SignInComponent } from '../components/sign-in/sign-in.component';
 import { SyntaxComponent } from '../components/syntax/syntax.component';
 import { TwilioComponent } from '../components/twilio/twilio.component';
@@ -130,7 +130,7 @@ const isLocalhost = window.location.hostname === 'localhost';
     PythonComponent,
     ReactComponent,
     ReactiveFormComponent,
-    RxJsDemo,
+    Experiments,
     ShortenPipe,
     SignInComponent,
     StructuralDirective,

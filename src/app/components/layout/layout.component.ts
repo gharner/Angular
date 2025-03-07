@@ -107,10 +107,10 @@ export class LayoutComponent implements OnInit, OnChanges {
                 },
               },
               {
-                label: 'RXJS',
-                id: 'rxjsDemo',
+                label: 'Experiments',
+                id: 'experiments',
                 command: () => {
-                  this.onMenuClick('/rxjsDemo');
+                  this.onMenuClick('/experiments');
                 },
               },
             ],

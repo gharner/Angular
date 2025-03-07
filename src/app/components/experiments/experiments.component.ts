@@ -1,15 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  Observable,
-  ReplaySubject,
-  Subscription,
-  interval,
-  of,
-  range,
-  zip,
-} from 'rxjs';
-import { first, map, take } from 'rxjs/operators';
-import { MAS_Schedules_Service } from 'src/app/services/mas-schedules.service';
+import { Component, OnInit } from '@angular/core';
 import { SandboxService } from 'src/app/services/sandbox.service';
 
 @Component({
@@ -17,7 +6,7 @@ import { SandboxService } from 'src/app/services/sandbox.service';
   templateUrl: './rxjs-demo.component.html',
   styleUrls: ['./rxjs-demo.component.css'],
 })
-export class RxJsDemo implements OnInit {
+export class Experiments implements OnInit {
   constructor(private sandboxService: SandboxService) {}
 
   async ngOnInit() {
