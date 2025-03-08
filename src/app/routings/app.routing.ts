@@ -5,25 +5,25 @@ import { BatchingComponent } from '../components/batching/batching.component';
 import { BindingComponent } from '../components/binding/binding.component';
 import { ContentProjectionComponent } from '../components/content/content-projection/content-projection.component';
 import { CSSComponent } from '../components/css/css.component';
-import { GoogleComponent } from '../components/google/google.component';
-import { ParentComponent } from '../components/lifecycles/parent.component';
-import { PrimeChartsComponent } from '../components/prime-charts/prime-charts.component';
 import { DirectivesTableComponent } from '../components/directives/directives.component';
-import { PromiseExample } from '../components/promise-example/promise-example.component';
-import { ReactiveFormComponent } from '../components/reactive-form/reactive-form.component';
-import { RxJsDemo } from '../components/experiments/experiments.component';
-import { SignInComponent } from '../components/sign-in/sign-in.component';
+import { Experiments } from '../components/experiments/experiments.component';
+import { GoogleComponent } from '../components/google/google.component';
 import { HomeComponent } from '../components/home/home.component';
+import { ParentComponent } from '../components/lifecycles/parent.component';
+import { MeComponent } from '../components/me/me.component';
+import { NodeComponent } from '../components/node/node.component';
+import { oopComponent } from '../components/oop/oop.component';
+import { PrimeChartsComponent } from '../components/prime-charts/prime-charts.component';
+import { PromiseExample } from '../components/promise-example/promise-example.component';
+import { PythonComponent } from '../components/python/python.component';
+import { ReactComponent } from '../components/react/react.component';
+import { ReactiveFormComponent } from '../components/reactive-form/reactive-form.component';
+import { SheetsComponent } from '../components/sheets/sheets.component';
+import { SignInComponent } from '../components/sign-in/sign-in.component';
 import { SyntaxComponent } from '../components/syntax/syntax.component';
 import { TwilioComponent } from '../components/twilio/twilio.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { IdentityResolverService } from '../resolvers/identity.resolver';
-import { SheetsComponent } from '../components/sheets/sheets.component';
-import { PythonComponent } from '../components/python/python.component';
-import { ReactComponent } from '../components/react/react.component';
-import { MeComponent } from '../components/me/me.component';
-import { NodeComponent } from '../components/node/node.component';
-import { oopComponent } from '../components/oop/oop.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -54,7 +54,7 @@ export const routes: Routes = [
   { path: 'lifecycles', component: ParentComponent, canActivate: [AuthGuard] },
   { path: 'promiseX', component: PromiseExample, canActivate: [AuthGuard] },
   { path: 'react', component: ReactComponent, canActivate: [AuthGuard] },
-  { path: 'rxjsDemo', component: RxJsDemo, canActivate: [AuthGuard] },
+  { path: 'experiments', component: Experiments, canActivate: [AuthGuard] },
   { path: 'sheets', component: SheetsComponent, canActivate: [AuthGuard] },
   { path: 'oop', component: oopComponent, canActivate: [AuthGuard] },
   { path: 'sign-in', component: SignInComponent },
