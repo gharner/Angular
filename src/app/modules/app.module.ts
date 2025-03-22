@@ -33,6 +33,7 @@ import { ContentComponent } from '../components/content/content.component';
 import { ViewchildExample } from '../components/content/viewchild-example/viewchild-example.component';
 import { CSSComponent } from '../components/css/css.component';
 import { DirectivesTableComponent } from '../components/directives/directives.component';
+import { Experiments } from '../components/experiments/experiments.component';
 import { GoogleComponent } from '../components/google/google.component';
 import { HomeComponent } from '../components/home/home.component';
 import { LayoutComponent } from '../components/layout/layout.component';
@@ -45,7 +46,6 @@ import { PromiseExample } from '../components/promise-example/promise-example.co
 import { PythonComponent } from '../components/python/python.component';
 import { ReactComponent } from '../components/react/react.component';
 import { ReactiveFormComponent } from '../components/reactive-form/reactive-form.component';
-import { Experiments } from '../components/experiments/experiments.component';
 import { SignInComponent } from '../components/sign-in/sign-in.component';
 import { SyntaxComponent } from '../components/syntax/syntax.component';
 import { TwilioComponent } from '../components/twilio/twilio.component';
@@ -55,11 +55,12 @@ import { AuthGuard } from '../guards/auth.guard';
 import { ShortenPipe } from '../pipes/shorten.pipe';
 import { IdentityResolverService } from '../resolvers/identity.resolver';
 import { AppRoutingModule } from '../routings/app.routing';
-import { GlobalErrorHandler } from '../services/error-handler.service';
+//import { GlobalErrorHandler } from '../services/error-handler.service';
+import * as Sentry from '@sentry/angular';
+import { oopComponent } from '../components/oop/oop.component';
 import { ErrorInterceptor } from '../services/http-interceptor.service';
 import { GoogleIdentityService } from '../services/identity.service';
 import { NGPrimeModule } from './ngprime.module';
-import { oopComponent } from '../components/oop/oop.component';
 
 const isLocalhost = window.location.hostname === 'localhost';
 
@@ -144,9 +145,15 @@ const isLocalhost = window.location.hostname === 'localhost';
     GoogleIdentityService,
     GoogleSheetsDbService,
     IdentityResolverService,
-    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    // { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     MessageService,
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: false,
+      }),
+    },
   ],
   bootstrap: [AppComponent],
 })
