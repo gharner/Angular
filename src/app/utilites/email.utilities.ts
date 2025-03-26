@@ -2,7 +2,7 @@ import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import * as Sentry from '@sentry/angular';
 
 export interface EmailMessage {
-	to: string;
+	to: string | string[];
 	cc?: string;
 	bcc?: string;
 	message: { subject: string; text?: string; html?: string };

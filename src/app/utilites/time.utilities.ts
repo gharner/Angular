@@ -82,15 +82,26 @@ export class DateTimeUtils {
 		return age;
 	}
 
-	/** Converts a YYYY-MM-DD date string to "MM/DD/YYYY" (display) or returns it as is (store) */
-	static formatDateStringByMode(dateString: string, mode: 'display' | 'store'): string {
-		const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-		if (!dateRegex.test(dateString)) {
-			Sentry.captureException(new Error(`Invalid Date ${dateString}. Required format YYYY-MM-DD`));
-			return 'Invalid date';
+	static formatDateStringByMode(dateString: string, mode: 'display' | 'store') {
+		try {
+			const dateStringTest = new RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}');
+			if (dateStringTest.test(dateString)) {
+				const dateStringYear = dateString.substring(0, 4);
+				const dateStringMonth = dateString.substring(5, 7);
+				const dateStringDay = dateString.substring(8, 10);
+				if (mode === 'store') {
+					return `${dateStringYear}-${dateStringMonth}-${dateStringDay}`;
+				} else if (mode === 'display') {
+					return `${dateStringMonth}/${dateStringDay}/${dateStringYear}`;
+				} else {
+					throw new Error(`Mode ${mode} does not match 'display' or 'store'`);
+				}
+			} else {
+				throw new Error(`Invalid Date ${dateString}. Required format YYYY-MM-DD`);
+			}
+		} catch (error) {
+			console.log('formatDateString', error);
+			return;
 		}
-
-		const [year, month, day] = dateString.split('-');
-		return mode === 'store' ? `${year}-${month}-${day}` : `${month}/${day}/${year}`;
 	}
 }
