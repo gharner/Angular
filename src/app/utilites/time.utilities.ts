@@ -5,7 +5,7 @@ export class DateTimeUtils {
 	 * Parses a date input (string or Date) and ensures it's a valid Date object.
 	 * Captures errors in Sentry and returns null if invalid.
 	 */
-	private static parseDate(d: Date | string): Date | null {
+	public static parseDate(d: Date | string): Date | null {
 		try {
 			if (typeof d === 'string') {
 				d = new Date(d);
