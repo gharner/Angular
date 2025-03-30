@@ -1,5 +1,4 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { logToConsole } from '.';
 
 export class FormUtils {
 	static findInvalidControlsRecursive(formToInvestigate: FormGroup | FormArray): string[] {
@@ -8,7 +7,6 @@ export class FormUtils {
 			Object.keys(form.controls).forEach(field => {
 				const control = form.get(field);
 				if (control?.status === 'INVALID') {
-					logToConsole(`FormUtils.findInvalidControlsRecursive`, control);
 					if (control.errors && control.errors['alert']) {
 						invalidControls.push(control.errors['alert']);
 					} else {

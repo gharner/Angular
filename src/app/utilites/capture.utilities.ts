@@ -1,19 +1,14 @@
 import * as Sentry from '@sentry/angular';
-
-export type LogOptions = {
-	logStyle?: string;
-	groupLabel?: string;
-	groupStyle?: string;
-	forceRoot?: boolean;
-};
+import { LogOptions } from './advanced-debugging.utilities';
 
 export function logToConsole(functionName: string, data?: any, options: LogOptions = {}): void {
 	if (window.location.hostname !== 'localhost') return;
 
 	const {
-		logStyle = 'color: lightblue; font-weight: bold; padding: 2px 6px; border-radius: 4px;',
+		logStyle = 'color: red; font-weight: bold; padding: 2px 6px; border-radius: 4px;',
 		groupLabel,
 		groupStyle = 'color: gray; font-weight: bold; background: #eee; padding: 2px 6px; border-radius: 4px;',
+		expanded,
 		forceRoot = false,
 	} = options;
 
@@ -24,7 +19,7 @@ export function logToConsole(functionName: string, data?: any, options: LogOptio
 
 	if (groupLabel) {
 		if (!logToConsole.openGroups[groupLabel]) {
-			console.groupCollapsed(`%c${groupLabel}`, groupStyle);
+			expanded ? console.group(`%c${groupLabel}`, groupStyle) : console.groupCollapsed(`%c${groupLabel}`, groupStyle);
 			logToConsole.openGroups[groupLabel] = true;
 		}
 	}
@@ -48,5 +43,5 @@ export function captureError(functionName: string, error: any, additionalData: a
 			...additionalData,
 		},
 	});
-	logToConsole(`Error in ${functionName}`, error, options);
+	logToConsole(`%cError in ${functionName}`, error, { logStyle: 'color: red; font-weight: bold; padding: 2px 6px; border-radius: 4px;' });
 }
