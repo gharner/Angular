@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/angular';
+
 export type LogOptions = {
 	logStyle?: string;
 	groupLabel?: string;
@@ -12,15 +13,20 @@ export class AdvancedDebugging {
 	private options: LogOptions = {};
 	private timers: Record<string, number> = {};
 
+	public getOpenGroups(): string[] {
+		return Object.entries(this.openGroups)
+			.filter(([, isOpen]) => isOpen)
+			.map(([key]) => key);
+	}
+
 	log(functionName: string, data?: any, overrides: LogOptions = {}): void {
 		if (window.location.hostname !== 'localhost') return;
 
 		const options = { ...this.options, ...overrides };
-		const { logStyle, groupLabel, groupStyle, expanded, forceRoot } = options;
+		const { logStyle = 'color: inherit;', groupLabel, groupStyle = 'font-weight: bold;', expanded, forceRoot } = options;
 
 		if (forceRoot) {
 			this.closeAllGroups();
-			this.options.forceRoot = false;
 		}
 
 		if (groupLabel && !this.openGroups[groupLabel]) {
@@ -33,12 +39,13 @@ export class AdvancedDebugging {
 
 	captureError(functionName: string, error: any, additionalData: any = {}, overrides: LogOptions = {}): void {
 		Sentry.captureException(error, {
-			extra: {
-				functionName,
-				...additionalData,
-			},
+			extra: { functionName, ...additionalData },
 		});
-		this.log(`Error in ${functionName}`, error, { ...overrides, logStyle: 'color: red;' });
+
+		this.log(`Error in ${functionName}`, error, {
+			...overrides,
+			logStyle: 'color: red; font-weight: bold;',
+		});
 	}
 
 	setOptions(options: Partial<LogOptions>): this {
@@ -76,8 +83,14 @@ export class AdvancedDebugging {
 		return this;
 	}
 
-	setForceRoot(force: boolean): this {
-		this.options.forceRoot = force;
+	/**
+	 * Immediately closes all open groups. If `force` is not "once", stores the flag.
+	 */
+	setForceRoot(force: boolean | 'once'): this {
+		this.closeAllGroups();
+		if (force !== 'once') {
+			this.options.forceRoot = force;
+		}
 		return this;
 	}
 
@@ -89,8 +102,8 @@ export class AdvancedDebugging {
 		return this;
 	}
 
-	closeTenDeep(): this {
-		for (let i = 0; i < 10; i++) {
+	closeNDeep(n: number): this {
+		for (let i = 0; i < n; i++) {
 			console.groupEnd();
 		}
 		return this;
@@ -118,11 +131,8 @@ export class AdvancedDebugging {
 	}
 
 	startPerformance(label = 'default'): this {
-		const startTime = performance.now();
-		this.timers[label] = startTime;
-
-		this.log(`⏱️ Start ${label}`, undefined);
-
+		this.timers[label] = performance.now();
+		this.log(`⏱️ Start ${label}`);
 		return this;
 	}
 
@@ -131,23 +141,26 @@ export class AdvancedDebugging {
 		const startTime = this.timers[label];
 
 		if (startTime === undefined) {
-			this.log(`⚠️ No performance timer found for "${label}"`, undefined);
+			this.log(`⚠️ No performance timer found for "${label}"`);
 			return -1;
 		}
 
 		const duration = endTime - startTime;
 		delete this.timers[label];
-
 		this.log(`⏱️ End ${label}`, `${duration.toFixed(2)}ms`);
 
 		return duration;
 	}
 
+	// Optional helper
+	hasPerformance(label = 'default'): boolean {
+		return this.timers[label] !== undefined;
+	}
+
 	private closeAllGroups(): void {
-		while (Object.keys(this.openGroups).length > 0) {
+		Object.keys(this.openGroups).forEach(label => {
 			console.groupEnd();
-			const label = Object.keys(this.openGroups)[0];
 			delete this.openGroups[label];
-		}
+		});
 	}
 }
