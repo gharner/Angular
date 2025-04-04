@@ -2,7 +2,7 @@
 import { doc, getFirestore, writeBatch } from '@angular/fire/firestore';
 import { captureError, logToConsole } from '../utilities';
 
-export async function saveModelsBatch<T extends { id: string; raw: any }>(models: T[], collectionPath: string): Promise<void> {
+export async function saveModelsBatch<T extends { id: string; raw: any }>(models: T[], collectionPath: string, mode: boolean = true): Promise<void> {
 	const firestore = getFirestore();
 	const chunkSize = 500;
 
@@ -17,7 +17,7 @@ export async function saveModelsBatch<T extends { id: string; raw: any }>(models
 		for (const model of chunk) {
 			try {
 				const ref = doc(firestore, collectionPath, model.id);
-				batch.set(ref, model.raw, { merge: true });
+				batch.set(ref, model.raw, { merge: mode });
 			} catch (error) {
 				captureError('saveModelsBatch=>prepareError', error, { id: model.id });
 			}
