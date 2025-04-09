@@ -104,4 +104,26 @@ export class DateTimeUtils {
 			return;
 		}
 	}
+
+	/** Returns the date string in 'YYYY-MM-DD' format based on New York time */
+	static getNewYorkDateString(date: Date = new Date()): string {
+		const formatter = new Intl.DateTimeFormat('en-US', {
+			timeZone: 'America/New_York',
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+		});
+
+		const parts = formatter.formatToParts(date);
+		const year = parts.find(p => p.type === 'year')?.value;
+		const month = parts.find(p => p.type === 'month')?.value;
+		const day = parts.find(p => p.type === 'day')?.value;
+
+		if (year && month && day) {
+			return `${year}-${month}-${day}`;
+		}
+
+		Sentry.captureException(new Error('Failed to format New York date'));
+		return 'Invalid date';
+	}
 }
