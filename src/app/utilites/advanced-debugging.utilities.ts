@@ -14,13 +14,12 @@ export class AdvancedDebugging {
 	private timers: Record<string, number> = {};
 
 	captureError(functionName: string, error: any, additionalData: any = {}, overrides: LogOptions = {}): void {
-		Sentry.captureException(error, {
-			extra: { functionName, ...additionalData },
-		});
-
-		this.log(`Error in ${functionName}`, error, {
+		this.always(`Error in ${functionName}`, error, {
 			...overrides,
 			logStyle: 'color: red; font-weight: bold;',
+		});
+		Sentry.captureException(error, {
+			extra: { functionName, ...additionalData },
 		});
 	}
 
