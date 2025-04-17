@@ -89,48 +89,29 @@ export class AdvancedDebugging {
 			.filter(([, isOpen]) => isOpen)
 			.map(([key]) => key);
 	}
-
 	hasPerformance(label = 'default'): boolean {
 		return this.timers[label] !== undefined;
 	}
 
 	log(functionName: string, data?: any, overrides: LogOptions = {}): void {
-		if (window.location.hostname !== 'localhost') return;
-		this._logInternal(functionName, data, overrides);
+		if (window.location.hostname === 'localhost') {
+			this._logInternal(functionName, data, overrides);
+		} else {
+			this._addBreadcrumb(functionName, data, overrides);
+		}
+	}
+
+	lite(functionName: string, data?: any, overrides: LogOptions = {}): void {
+		if (window.location.hostname === 'localhost') {
+			this._logInternal(functionName, data, overrides);
+		}
 	}
 
 	always(functionName: string, data?: any, overrides: LogOptions = {}): void {
+		if (window.location.hostname !== 'localhost') {
+			this._addBreadcrumb(functionName, data, overrides);
+		}
 		this._logInternal(functionName, data, overrides);
-	}
-
-	private _logInternal(functionName: string, data?: any, overrides: LogOptions = {}): void {
-		const options = { ...this.options, ...overrides };
-		const { logStyle = 'color: inherit;', groupLabel, groupStyle = 'font-weight: bold;', expanded, forceRoot } = options;
-
-		if (forceRoot) {
-			this.closeAllGroups();
-		}
-
-		if (groupLabel && !this.openGroups[groupLabel]) {
-			expanded ? console.group(`%c${groupLabel}`, groupStyle) : console.groupCollapsed(`%c${groupLabel}`, groupStyle);
-			this.openGroups[groupLabel] = true;
-		}
-
-		console.log(`%c${functionName}`, logStyle, ...(data !== undefined ? [data] : []));
-	}
-
-	logInfo(functionName: string, data?: any, overrides: LogOptions = {}) {
-		this.log(functionName, data, {
-			logStyle: 'color: dodgerblue;',
-			...overrides,
-		});
-	}
-
-	logWarn(functionName: string, data?: any, overrides: LogOptions = {}) {
-		this.log(functionName, data, {
-			logStyle: 'color: orange; font-weight: bold;',
-			...overrides,
-		});
 	}
 
 	setExpanded(expanded: boolean): this {
@@ -138,9 +119,6 @@ export class AdvancedDebugging {
 		return this;
 	}
 
-	/**
-	 * Immediately closes all open groups. If `force` is not "once", stores the flag.
-	 */
 	setForceRoot(force: boolean | 'once'): this {
 		this.closeAllGroups();
 		if (force !== 'once') {
@@ -169,6 +147,11 @@ export class AdvancedDebugging {
 		return this;
 	}
 
+	setUser(user: { id?: string; email?: string } | null): this {
+		Sentry.setUser(user);
+		return this;
+	}
+
 	startPerformance(label = 'default'): this {
 		this.timers[label] = performance.now();
 		this.log(`⏱️ Start ${label}`);
@@ -188,5 +171,32 @@ export class AdvancedDebugging {
 			console.groupEnd();
 			delete this.openGroups[label];
 		});
+	}
+
+	private _addBreadcrumb(functionName: string, data?: any, overrides: LogOptions = {}) {
+		const options = { ...this.options, ...overrides };
+		const breadcrumb: Sentry.Breadcrumb = {
+			category: options.groupLabel || 'advanced-debug',
+			message: functionName,
+			level: 'info',
+			data: data !== undefined ? { data } : undefined,
+		};
+		Sentry.addBreadcrumb(breadcrumb);
+	}
+
+	private _logInternal(functionName: string, data?: any, overrides: LogOptions = {}): void {
+		const options = { ...this.options, ...overrides };
+		const { logStyle = 'color: inherit;', groupLabel, groupStyle = 'font-weight: bold;', expanded, forceRoot } = options;
+
+		if (forceRoot) {
+			this.closeAllGroups();
+		}
+
+		if (groupLabel && !this.openGroups[groupLabel]) {
+			expanded ? console.group(`%c${groupLabel}`, groupStyle) : console.groupCollapsed(`%c${groupLabel}`, groupStyle);
+			this.openGroups[groupLabel] = true;
+		}
+
+		console.log(`%c${functionName}`, logStyle, ...(data !== undefined ? [data] : []));
 	}
 }
