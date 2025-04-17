@@ -18,8 +18,28 @@ export class AdvancedDebugging {
 			...overrides,
 			logStyle: 'color: red; font-weight: bold;',
 		});
-		Sentry.captureException(error, {
-			extra: { functionName, ...additionalData },
+
+		const [component, fn] = functionName.includes('=>') ? functionName.split('=>') : [undefined, functionName];
+
+		Sentry.withScope(scope => {
+			if (component) scope.setTag('component', component);
+			scope.setTag('function', fn || functionName);
+
+			// Promote tags from additionalData if present
+			if (additionalData?.tags) {
+				for (const [key, value] of Object.entries(additionalData.tags)) {
+					scope.setTag(key, value as string);
+				}
+			}
+
+			// Everything else is extra
+			for (const [key, value] of Object.entries(additionalData)) {
+				if (key !== 'tags') {
+					scope.setExtra(key, value);
+				}
+			}
+
+			Sentry.captureException(error);
 		});
 	}
 
