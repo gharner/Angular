@@ -1,5 +1,4 @@
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import * as Sentry from '@sentry/angular';
 import { AdvancedDebugging } from './advanced-debugging.utilities';
 
 export interface EmailMessage {
@@ -51,13 +50,10 @@ export class SendEmail {
 			this.advancedDebugging.always('writeEmailToFirestore=>firestore instance', this.firestore);
 
 			await addDoc(ref, cleanedMessage).catch(err => {
-				console.error('addDoc failed:', err);
+				this.advancedDebugging.captureError('addDoc failed:', err);
 			});
 		} catch (error) {
-			Sentry.captureException(error, {
-				extra: { functionName: 'writeEmailToFirestore', emailMessage: message },
-			});
-			console.error('Error writing email to Firestore:', error);
+			this.advancedDebugging.captureError('writeEmailToFirestore', error, { emailMessage: message });
 		}
 	}
 }
